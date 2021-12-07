@@ -18,7 +18,7 @@ pipeline {
     }
 
     tools {
-        maven 'maven_3.6.3'
+        maven 'maven_3.8.4'
         jdk 'jdk-8'
     }
 
