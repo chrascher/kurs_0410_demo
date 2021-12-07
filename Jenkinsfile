@@ -65,7 +65,13 @@ pipeline {
                 build job: "test", wait: true
             }
         }
-        
+        stage('Deploy to Nexus') {
+            steps {
+                // -Plocal-deploy
+            	echo "Deploy to Nexus"
+                sh 'mvn -B -N wagon:upload -Dproject.nexus.wagon-upload-serverId=\\${project.nexus.snapshot-serverId} -Dproject.nexus.wagon-upload-url=\\${project.nexus.snapshot-repository}'
+            }
+        }        
         
     }
     post {
