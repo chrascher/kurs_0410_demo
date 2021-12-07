@@ -45,6 +45,15 @@ pipeline {
                 sh 'mvn test'
             }
         }
+        stage('build downstream') {
+            when{
+                expression (return build_downstream==true)
+            }
+            steps {
+                echo 'This is the downstream build step'
+            }
+        }
+        
     }
     post {
         failure {
