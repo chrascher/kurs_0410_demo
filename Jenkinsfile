@@ -47,7 +47,7 @@ pipeline {
         }
         stage('build downstream') {
             when{
-                expression (build_downstream==true)
+                expression (return env.build_downstream==true)
             }
             steps {
                 echo 'This is the downstream build step'
