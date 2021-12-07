@@ -39,6 +39,34 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
+        stage('Build and Unit Test') {
+            steps {
+                echo "Build and Unit Test"
+                sh "mvn -B -nsu clean install"
+            }
+            post {
+                always {
+                  script {
+                       try{
+                            junit "**/failsafe-reports/*.xml"
+                        }catch(Exception e) {
+                            echo 'failsafe-reports not found'
+                        }
+                    }
+                }
+            }
+        }
+        stage('Build Downstream Jobs') {
+            when {
+                expression { params.build_downstream.toBoolean() == true}
+            }
+            steps {
+                echo "build downstream jobs"
+                build job: "test", wait: true
+            }
+        }
+        
+        
     }
     post {
         failure {
