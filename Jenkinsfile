@@ -62,7 +62,6 @@ pipeline {
             }
             steps {
                 echo "build downstream jobs"
-                build job: "test", wait: true
             }
         }
         stage('Deploy to Nexus') {
