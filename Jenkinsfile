@@ -58,7 +58,7 @@ pipeline {
         }
         stage('Build Downstream Jobs') {
             when {
-                expression { params.build_downstream.toBoolean() == true}
+                expression { build_downstream == true}
             }
             steps {
                 echo "build downstream jobs"
