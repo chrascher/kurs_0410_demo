@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Kommentar von chris für die Klasse
+ * Kommentar von chris für die Klasse 
  */
 public class SimpleTestMain {
 
