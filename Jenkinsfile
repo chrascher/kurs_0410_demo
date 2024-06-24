@@ -18,8 +18,8 @@ pipeline {
     }
 
     tools {
-        maven 'maven_3.8.x'  // 'maven_3.6.3'
-        jdk 'jdk-1.8.x'    // 'jdk_1.8.0'
+        maven 'maven_3.8.x'
+        jdk 'jdk-1.8.x'
     }
 
     stages {
@@ -62,7 +62,6 @@ pipeline {
             }
             steps {
                 echo "build downstream jobs"
-                build job: "test", wait: true
             }
         }
         stage('Deploy to Nexus') {
@@ -71,7 +70,7 @@ pipeline {
             	echo "Deploy to Nexus"
                 sh 'mvn -B -N wagon:upload -Dproject.nexus.wagon-upload-serverId=\\${project.nexus.snapshot-serverId} -Dproject.nexus.wagon-upload-url=\\${project.nexus.snapshot-repository}'
             }
-        }        
+        }
         
     }
     post {
